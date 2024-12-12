@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация и сохранение токена</title>
+</head>
+<body>
+    <h1>Регистрация</h1>
+
+    <!-- Форма для регистрации -->
+    <form id="registrationForm">
+        <input type="text" id="username" placeholder="Имя пользователя" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                // Отправляем запрос на сервер для регистрации пользователя
+                const response = await fetch("http://127.0.0.1:8000/api/register/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Сохраняем токены в LocalStorage, если сервер возвращает их
+                    if (data.access && data.refresh) {
+                        localStorage.setItem("accessToken", data.access);
+                        localStorage.setItem("refreshToken", data.refresh);
+                        alert("Регистрация успешна! Токены сохранены в LocalStorage.");
+                    } else {
+                        alert("Регистрация успешна, но токены не получены.");
+                    }
+                } else {
+                    const errorData = await response.json();
+                    alert("Ошибка регистрации: " + (errorData.error || "Проверьте данные."));
+                }
+            } catch (error) {
+                console.error("Ошибка регистрации:", error);
+                alert("Произошла ошибка. Попробуйте еще раз.");
+            }
+        });
+    </script>
+</body>
+</html>

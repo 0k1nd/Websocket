@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>123131</title>
+</head>
+<body>
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Введите имя комнаты" required>
+      <button type="submit">Создать комнату</button>
+    </form>
+</body>
+</html>
