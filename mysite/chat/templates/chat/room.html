@@ -1,103 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <title>Chat Rooms</title>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
 </head>
 <body>
-<h4>Hi - <span id="username"></span></h4>
-<textarea id="chat-log" cols="100" rows="20"></textarea><br>
-<input id="chat-message-input" type="text" size="100"><br>
-<input id="chat-message-submit" type="button" value="Send">
+    <h4>Привет, <span id="username"></span></h4>
+    <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
+    <input id="chat-message-input" type="text" size="100" placeholder="Введите сообщение"><br>
+    <button id="chat-message-submit">Отправить</button>
 
-<script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"></script>
-<script>
-    const room_pk = "{{ room.pk }}";
-    const request_id = new Date().getTime()
-    const token = ''
-    console.log(room_pk)
-    console.log(request_id)
-    console.log("request", '{{request}}')
-    const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/?token=${localStorage.getItem('Token')}`);
+    <script>
+        const room_pk = "{{ room.pk }}";
+        const request_id = new Date().getTime();
+        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        const token = localStorage.getItem('token');
 
+        // Проверка наличия токена
+        if (!token) {
+            console.error('Токен не найден в LocalStorage!');
+            alert('Вы не авторизованы! Пожалуйста, войдите в систему.');
+            window.location.href = '/login';
+        } else {
+            console.log('Токен найден:', token);
+        }
 
-    chatSocket.onopen = function () {
-        chatSocket.send(
-            JSON.stringify({
-                pk: room_pk,
-                action: "join_room",
-                request_id: request_id,
-            })
-        );
-        chatSocket.send(
-            JSON.stringify({
-                pk: room_pk,
-                action: "retrieve",
-                request_id: request_id,
-            })
-        );
-        chatSocket.send(
-            JSON.stringify({
-                pk: room_pk,
-                action: "subscribe_to_messages_in_room",
-                request_id: request_id,
-            })
-        );
-        chatSocket.send(
-            JSON.stringify({
-                pk: room_pk,
-                action: "subscribe_instance",
-                request_id: request_id,
-            })
-        );
-    };
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
 
-    chatSocket.onmessage = function (e) {
-        const data = JSON.parse(e.data);
-        console.log('RealTime', data.data)
-        switch (data.action) {
-            case "retrieve":
-                console.log(data.data)
-                document.getElementById('username').innerText = data.data.host.username
-                for (let mess of data.data.messages) {
-                    console.log(mess.text)
+        // Функция подключения WebSocket с автоматическим переподключением
+        function connectWebSocket() {
+            const chatSocket = new WebSocket(`${protocol}://${window.location.host}/ws/chat/?token=${token}`);
+
+            chatSocket.onopen = function () {
+                console.log('WebSocket соединение открыто.');
+                reconnectAttempts = 0;
+
+                chatSocket.send(JSON.stringify({ pk: room_pk, action: "join_room", request_id }));
+                chatSocket.send(JSON.stringify({ pk: room_pk, action: "retrieve", request_id }));
+            };
+
+            chatSocket.onmessage = function (e) {
+                const data = JSON.parse(e.data);
+
+                switch (data.action) {
+                    case "retrieve":
+                        document.getElementById('username').innerText = data.data.host.username;
+                        for (let mess of data.data.messages) {
+                            appendMessage(mess.user.username, mess.text);
+                        }
+                        break;
+                    case "create":
+                        appendMessage(data.data.user.username, data.data.text);
+                        break;
+                    case "error":
+                        alert(`Ошибка: ${data.message}`);
+                        break;
+                    default:
+                        console.log("Получено сообщение:", data);
+                }
+            };
+
+            chatSocket.onclose = function () {
+                console.error('Соединение потеряно.');
+                if (reconnectAttempts < maxReconnectAttempts) {
+                    reconnectAttempts++;
+                    console.log(`Попытка переподключения ${reconnectAttempts} из ${maxReconnectAttempts}...`);
+                    setTimeout(connectWebSocket, 3000);
+                } else {
+                    alert('Не удалось восстановить соединение с сервером. Пожалуйста, перезагрузите страницу.');
+                }
+            };
+
+            chatSocket.onerror = function (error) {
+                console.error('Ошибка WebSocket:', error);
+            };
+
+            // Обработка отправки сообщений
+            document.getElementById('chat-message-submit').onclick = function () {
+                const messageInput = document.getElementById('chat-message-input');
+                const message = messageInput.value.trim();
+
+                if (message.length === 0) {
+                    alert("Сообщение не может быть пустым!");
+                    return;
                 }
 
-                //setRoom(old =>data.data);
-                //setMessages(old=>data.messages);
-                break;
-            case "create":
-                console.log(data.action, data.data)
-                //setMessages(old=>[...old, data])
-                break;
-            default:
-                break;
+                chatSocket.send(JSON.stringify({ message, action: "create_message", request_id }));
+                messageInput.value = '';
+            };
+
+            // Отправка по нажатию Enter
+            document.getElementById('chat-message-input').onkeyup = function (e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('chat-message-submit').click();
+                }
+            };
         }
-    };
 
-    chatSocket.onclose = function (e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-
-    $('#chat-message-input').focus();
-    $('#chat-message-input').on('keyup', function (e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#chat-message-submit').click();
+        // Функция для добавления сообщений в лог
+        function appendMessage(username, message) {
+            const chatLog = document.getElementById('chat-log');
+            chatLog.value += `${username}: ${message}\n`;
+            chatLog.scrollTop = chatLog.scrollHeight;
         }
-    });
-    $('#chat-message-submit').on('click', function (e) {
-        const message = $('#chat-message-input').val();
-        chatSocket.send(JSON.stringify({
-            message: message,
-            action: "create_message",
-            request_id: request_id,
-        }));
-        $('#chat-message-input').val('');
-    });
-</script>
 
+        // Запуск подключения WebSocket
+        connectWebSocket();
+    </script>
 </body>
 </html>

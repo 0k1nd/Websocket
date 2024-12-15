@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
 <body>
-$END$
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+<script>
+    // Функция для получения CSRF-токена из куки
+    function getCSRFToken() {
+        let csrfToken = null;
+        const cookies = document.cookie.split(';'); // Разделяем куки по ";"
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith('csrftoken=')) { // Поиск CSRF-токена
+                csrfToken = cookie.substring('csrftoken='.length, cookie.length);
+                break;
+            }
+        }
+
+        return csrfToken;
+    }
+
+    // Сохранение CSRF-токена в LocalStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const csrfToken = getCSRFToken();
+        if (csrfToken) {
+            localStorage.setItem('csrftoken', csrfToken);
+            console.log("CSRF-токен успешно сохранён в LocalStorage:", csrfToken);
+        } else {
+            console.error("CSRF-токен не найден!");
+        }
+    });
+</script>
 </body>
 </html>

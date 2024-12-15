@@ -67,6 +67,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -97,6 +105,30 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "ModelAdmin",
+        "importPath": "django.contrib.admin",
+        "description": "django.contrib.admin",
+        "isExtraImport": true,
+        "detail": "django.contrib.admin",
         "documentation": {}
     },
     {
@@ -325,6 +357,14 @@
         "documentation": {}
     },
     {
+        "label": "views",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -349,7 +389,7 @@
         "documentation": {}
     },
     {
-        "label": "re_path",
+        "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -421,6 +461,14 @@
         "documentation": {}
     },
     {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponseRedirect",
         "importPath": "django.http",
         "description": "django.http",
@@ -445,14 +493,6 @@
         "documentation": {}
     },
     {
-        "label": "User",
-        "importPath": "rest_framework.authtoken.admin",
-        "description": "rest_framework.authtoken.admin",
-        "isExtraImport": true,
-        "detail": "rest_framework.authtoken.admin",
-        "documentation": {}
-    },
-    {
         "label": "Response",
         "importPath": "rest_framework.response",
         "description": "rest_framework.response",
@@ -474,6 +514,14 @@
         "description": "rest_framework_simplejwt.tokens",
         "isExtraImport": true,
         "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "make_password",
+        "importPath": "django.contrib.auth.hashers",
+        "description": "django.contrib.auth.hashers",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.hashers",
         "documentation": {}
     },
     {
@@ -550,11 +598,35 @@
         "documentation": {}
     },
     {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
+        "label": "get_schema_view",
+        "importPath": "drf_yasg.views",
+        "description": "drf_yasg.views",
         "isExtraImport": true,
-        "detail": "django.contrib",
+        "detail": "drf_yasg.views",
+        "documentation": {}
+    },
+    {
+        "label": "openapi",
+        "importPath": "drf_yasg",
+        "description": "drf_yasg",
+        "isExtraImport": true,
+        "detail": "drf_yasg",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
         "documentation": {}
     },
     {
@@ -656,6 +728,33 @@
         "documentation": {}
     },
     {
+        "label": "UserAdmin",
+        "kind": 6,
+        "importPath": "mysite.chat.admin",
+        "description": "mysite.chat.admin",
+        "peekOfCode": "class UserAdmin(ModelAdmin):\n    pass\n@admin.register(models.Message)\nclass MessageAdmin(ModelAdmin):\n    pass\n@admin.register(models.Room)\nclass RoomAdmin(ModelAdmin):\n    pass",
+        "detail": "mysite.chat.admin",
+        "documentation": {}
+    },
+    {
+        "label": "MessageAdmin",
+        "kind": 6,
+        "importPath": "mysite.chat.admin",
+        "description": "mysite.chat.admin",
+        "peekOfCode": "class MessageAdmin(ModelAdmin):\n    pass\n@admin.register(models.Room)\nclass RoomAdmin(ModelAdmin):\n    pass",
+        "detail": "mysite.chat.admin",
+        "documentation": {}
+    },
+    {
+        "label": "RoomAdmin",
+        "kind": 6,
+        "importPath": "mysite.chat.admin",
+        "description": "mysite.chat.admin",
+        "peekOfCode": "class RoomAdmin(ModelAdmin):\n    pass",
+        "detail": "mysite.chat.admin",
+        "documentation": {}
+    },
+    {
         "label": "ChatConfig",
         "kind": 6,
         "importPath": "mysite.chat.apps",
@@ -669,7 +768,7 @@
         "kind": 6,
         "importPath": "mysite.chat.consumers",
         "description": "mysite.chat.consumers",
-        "peekOfCode": "class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):\n    queryset = models.Room.objects.all()\n    serializer_class = serializers.RoomSerializers\n    lookup_field = \"pk\"\n    @database_sync_to_async\n    def add_user_to_room(self, pk):\n        user = self.scope[\"user\"]\n        room = models.Room.objects.get(pk=pk)\n        if not user.current_rooms.filter(pk=room.pk).exists():\n            user.current_rooms.add(room)",
+        "peekOfCode": "class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):\n    queryset = models.Room.objects.all()\n    serializer_class = serializers.RoomSerializers\n    lookup_field = \"pk\"\n    @database_sync_to_async\n    def add_user_to_room(self, pk):\n        \"\"\"\n        Добавляет пользователя в комнату.\n        \"\"\"\n        try:",
         "detail": "mysite.chat.consumers",
         "documentation": {}
     },
@@ -687,7 +786,7 @@
         "kind": 6,
         "importPath": "mysite.chat.middleware",
         "description": "mysite.chat.middleware",
-        "peekOfCode": "class JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        try:\n            query_string = scope.get(\"query_string\", b\"\").decode()\n            token_key = dict(x.split(\"=\") for x in query_string.split(\"&\")).get(\"token\", None)\n            if not token_key:\n                raise ValueError(\"JWT токен отсутствует\")",
+        "peekOfCode": "class JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT-токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        \"\"\"\n        Главная точка входа в middleware.\n        \"\"\"\n        query_string = scope.get(\"query_string\", b\"\").decode()\n        token = self._get_token_from_query(query_string)",
         "detail": "mysite.chat.middleware",
         "documentation": {}
     },
@@ -696,7 +795,7 @@
         "kind": 5,
         "importPath": "mysite.chat.middleware",
         "description": "mysite.chat.middleware",
-        "peekOfCode": "User = get_user_model()\nclass JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        try:\n            query_string = scope.get(\"query_string\", b\"\").decode()\n            token_key = dict(x.split(\"=\") for x in query_string.split(\"&\")).get(\"token\", None)\n            if not token_key:",
+        "peekOfCode": "User = get_user_model()\nclass JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT-токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        \"\"\"\n        Главная точка входа в middleware.\n        \"\"\"\n        query_string = scope.get(\"query_string\", b\"\").decode()",
         "detail": "mysite.chat.middleware",
         "documentation": {}
     },
@@ -741,7 +840,7 @@
         "kind": 5,
         "importPath": "mysite.chat.routing",
         "description": "mysite.chat.routing",
-        "peekOfCode": "websocket_urlpatterns = [\n    re_path(r'ws/$', consumers.UserConsumer.as_asgi()),\n    re_path(r'ws/chat/$', consumers.RoomConsumer.as_asgi()),\n]",
+        "peekOfCode": "websocket_urlpatterns = [\n    path('ws/users/', consumers.UserConsumer.as_asgi(), name='user_ws'),\n    path('ws/chat/', consumers.RoomConsumer.as_asgi(), name='chat_ws'),\n]",
         "detail": "mysite.chat.routing",
         "documentation": {}
     },
@@ -750,7 +849,7 @@
         "kind": 6,
         "importPath": "mysite.chat.serializers",
         "description": "mysite.chat.serializers",
-        "peekOfCode": "class UserSerializer(serializers.ModelSerializer):\n    class Meta:\n     model = models.User\n     fields = ['id','username','email','password']\n     extra_kwargs = {'password':{'write_only':True}}\n    def create(self, validated_data):\n        user = models.User(\n            email=validated_data['email'],\n            username=validated_data['username']\n        )",
+        "peekOfCode": "class UserSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = models.User\n        fields = ['id', 'username', 'email', 'password']\n        extra_kwargs = {'password': {'write_only': True}}\n    def create(self, validated_data):\n        user = models.User(\n            email=validated_data['email'],\n            username=validated_data['username']\n        )",
         "detail": "mysite.chat.serializers",
         "documentation": {}
     },
@@ -759,7 +858,7 @@
         "kind": 6,
         "importPath": "mysite.chat.serializers",
         "description": "mysite.chat.serializers",
-        "peekOfCode": "class MessageSerializer(serializers.ModelSerializer):\n    create_at_formated = serializers.SerializerMethodField\n    user = UserSerializer\n    class Meta:\n        model = models.Message\n        exclude = []\n        depth = 1\n    def get_create_at_formated(self, obj: models.Message):\n        return obj.create_at.strftime(\"%d-%m-%Y %H:%M:%S\")\nclass RoomSerializers(serializers.ModelSerializer):",
+        "peekOfCode": "class MessageSerializer(serializers.ModelSerializer):\n    create_at_formated = serializers.SerializerMethodField()\n    user = UserSerializer()\n    class Meta:\n        model = models.Message\n        exclude = []\n        depth = 1\n    def get_create_at_formated(self, obj: models.Message):\n        return obj.create_at.strftime(\"%d-%m-%Y %H:%M:%S\")\nclass RoomSerializers(serializers.ModelSerializer):",
         "detail": "mysite.chat.serializers",
         "documentation": {}
     },
@@ -768,7 +867,7 @@
         "kind": 6,
         "importPath": "mysite.chat.serializers",
         "description": "mysite.chat.serializers",
-        "peekOfCode": "class RoomSerializers(serializers.ModelSerializer):\n    last_message = serializers.SerializerMethodField()\n    messages = MessageSerializer(many=True, read_only=True)\n    class Meta:\n        model = models.Room\n        fields = '__all__'\n        depht = 1\n        read_only_fields = [\"messages\", \"last_message\"]\n    def get_last_message(self, obj: models.Room):\n        return MessageSerializer(obj.messages.order_by(\"create_at\").last()).data",
+        "peekOfCode": "class RoomSerializers(serializers.ModelSerializer):\n    last_message = serializers.SerializerMethodField()\n    messages = MessageSerializer(many=True, read_only=True)\n    class Meta:\n        model = models.Room\n        fields = '__all__'\n        depth = 1\n        read_only_fields = [\"messages\", \"last_message\"]\n    def get_last_message(self, obj: models.Room):\n        last_message = obj.messages.order_by(\"create_at\").last()",
         "detail": "mysite.chat.serializers",
         "documentation": {}
     },
@@ -804,7 +903,7 @@
         "kind": 5,
         "importPath": "mysite.chat.urls",
         "description": "mysite.chat.urls",
-        "peekOfCode": "urlpatterns = [\n    path('test/', views.test),\n    path('room/<int:pk>/', views.room, name='room'),\n    path('', views.index, name='index'),\n    path('token/', views.RegisterView.as_view(), name='reg'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('test/', views.test),\n    path('room/<int:pk>/', views.room, name='room'),\n    path('index/', views.index, name='index'),\n    path('token/', views.RegisterView.as_view(), name='reg'),\n]",
         "detail": "mysite.chat.urls",
         "documentation": {}
     },
@@ -813,7 +912,7 @@
         "kind": 6,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "class RegisterView(APIView):\n    def post(self, request):\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        if not username or not password:\n            return Response({\"error\": \"Имя пользователя и пароль обязательны\"}, status=status.HTTP_400_BAD_REQUEST)\n        if User.objects.filter(username=username).exists():\n            return Response({\"error\": \"Пользователь с таким именем уже существует\"}, status=status.HTTP_400_BAD_REQUEST)\n        user = User.objects.create_user(username=username, password=password)\n        refresh = RefreshToken.for_user(user)",
+        "peekOfCode": "class RegisterView(APIView):\n    def post(self, request):\n        # Обработка JSON и форм\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        email = request.data.get(\"email\")\n        # Отладка\n        print(\"Request Content-Type:\", request.content_type)\n        print(\"Request Data:\", request.data)\n        if not username or not password:",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -822,7 +921,7 @@
         "kind": 2,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "def test(request):\n    return render(request, \"chat/test.html\")\ndef index(request):\n    if request.method == \"POST\":\n        name = request.POST.get(\"name\", None)\n        if name:\n            room = models.Room.objects.create(name=name, host=request.user)\n            return HttpResponseRedirect(reverse(\"room\", kwargs={\"pk\": room.pk}))\n        return render(request, 'chat/index.html', {\"error\": \"Имя комнаты обязательно!\"})\n    return render(request, 'chat/index.html')",
+        "peekOfCode": "def test(request):\n    return render(request, \"chat/test.html\")\n@login_required\ndef index(request):\n    if request.method == \"POST\":\n        name = request.POST.get(\"name\", None)\n        if name:\n            room = models.Room.objects.create(name=name, host=request.user)\n            return HttpResponseRedirect(reverse(\"room\", kwargs={\"pk\": room.pk}))\n        return render(request, 'chat/index.html', {\"error\": \"Имя комнаты обязательно!\"})",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -840,7 +939,7 @@
         "kind": 2,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "def room(request, pk):\n    room = get_object_or_404(models.Room, pk=pk)\n    return render(request, 'chat/room.html', {\"room\": room})\nclass RegisterView(APIView):\n    def post(self, request):\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        if not username or not password:\n            return Response({\"error\": \"Имя пользователя и пароль обязательны\"}, status=status.HTTP_400_BAD_REQUEST)\n        if User.objects.filter(username=username).exists():",
+        "peekOfCode": "def room(request, pk):\n    room = get_object_or_404(models.Room, pk=pk)\n    return render(request, 'chat/room.html', {\"room\": room, \"ws_url\": f\"ws://{request.get_host()}/ws/chat/{room.pk}/\"})\nclass RegisterView(APIView):\n    def post(self, request):\n        # Обработка JSON и форм\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        email = request.data.get(\"email\")\n        # Отладка",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -849,7 +948,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.asgi",
         "description": "mysite.mysite.asgi",
-        "peekOfCode": "application = ProtocolTypeRouter({\n  \"http\": get_asgi_application(),\n  \"websocket\":URLRouter(\n            routing.websocket_urlpatterns\n    ),\n})",
+        "peekOfCode": "application = ProtocolTypeRouter({\n    \"http\": get_asgi_application(),\n    \"websocket\": JwtAuthMiddleware(\n        URLRouter(\n            routing.websocket_urlpatterns\n        )\n    ),\n})",
         "detail": "mysite.mysite.asgi",
         "documentation": {}
     },
@@ -867,7 +966,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'redis',\n    'django.contrib.admin',\n    'django.contrib.auth',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -876,7 +975,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'redis',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -885,7 +984,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'redis',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
+        "peekOfCode": "ALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -894,7 +993,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "LOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'redis',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "LOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -903,7 +1002,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'redis',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',\n    'rest_framework.authtoken',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',\n    'drf_yasg',\n    'rest_framework.authtoken',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -957,7 +1056,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'mysite.wsgi.application'\nASGI_APPLICATION = 'mysite.asgi.application'\nCHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels_redis.core.RedisChannelLayer',\n        'CONFIG': {\n            \"hosts\": [(\"127.0.0.1\", 6379)],  # Убедитесь, что Redis запущен\n        },\n    },\n}",
+        "peekOfCode": "WSGI_APPLICATION = 'mysite.wsgi.application'\nASGI_APPLICATION = 'mysite.asgi.application'\nCHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels.layers.InMemoryChannelLayer',\n    },\n}\n# Database\n# https://docs.djangoproject.com/en/4.2/ref/settings/#databases\nDATABASES = {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -966,7 +1065,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "ASGI_APPLICATION = 'mysite.asgi.application'\nCHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels_redis.core.RedisChannelLayer',\n        'CONFIG': {\n            \"hosts\": [(\"127.0.0.1\", 6379)],  # Убедитесь, что Redis запущен\n        },\n    },\n}\n# Database",
+        "peekOfCode": "ASGI_APPLICATION = 'mysite.asgi.application'\nCHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels.layers.InMemoryChannelLayer',\n    },\n}\n# Database\n# https://docs.djangoproject.com/en/4.2/ref/settings/#databases\nDATABASES = {\n    'default': {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -975,7 +1074,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "CHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels_redis.core.RedisChannelLayer',\n        'CONFIG': {\n            \"hosts\": [(\"127.0.0.1\", 6379)],  # Убедитесь, что Redis запущен\n        },\n    },\n}\n# Database\n# https://docs.djangoproject.com/en/4.2/ref/settings/#databases",
+        "peekOfCode": "CHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels.layers.InMemoryChannelLayer',\n    },\n}\n# Database\n# https://docs.djangoproject.com/en/4.2/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1002,7 +1101,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = '/static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1011,7 +1110,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = '/static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1020,7 +1119,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = '/static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1029,7 +1128,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.2/howto/static-files/\nSTATIC_URL = '/static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1038,7 +1137,16 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "STATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
+        "peekOfCode": "STATIC_URL = '/static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
+        "detail": "mysite.mysite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "mysite.mysite.settings",
+        "description": "mysite.mysite.settings",
+        "peekOfCode": "STATIC_ROOT = BASE_DIR / 'staticfiles'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'chat.User'",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1061,11 +1169,20 @@
         "documentation": {}
     },
     {
+        "label": "schema_view",
+        "kind": 5,
+        "importPath": "mysite.mysite.urls",
+        "description": "mysite.mysite.urls",
+        "peekOfCode": "schema_view = get_schema_view(\n    openapi.Info(\n        title=\"Chat API\",\n        default_version='v1',\n        description=\"Документация API для чата\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"contact@example.com\"),\n        license=openapi.License(name=\"BSD License\"),\n    ),\n    public=True,",
+        "detail": "mysite.mysite.urls",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "mysite.mysite.urls",
         "description": "mysite.mysite.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('chat/', include(myapp_urls))\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('chat.urls')),\n    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n    path('accounts/', include('django.contrib.auth.urls')),\n    path('login/', auth_views.LoginView.as_view(), name='login'),\n]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "mysite.mysite.urls",
         "documentation": {}
     },

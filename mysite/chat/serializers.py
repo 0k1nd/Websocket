@@ -4,9 +4,9 @@ from . import models
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-     model = models.User
-     fields = ['id','username','email','password']
-     extra_kwargs = {'password':{'write_only':True}}
+        model = models.User
+        fields = ['id', 'username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         user = models.User(
@@ -19,8 +19,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    create_at_formated = serializers.SerializerMethodField
-    user = UserSerializer
+    create_at_formated = serializers.SerializerMethodField()
+    user = UserSerializer()
 
     class Meta:
         model = models.Message
@@ -38,8 +38,9 @@ class RoomSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Room
         fields = '__all__'
-        depht = 1
+        depth = 1
         read_only_fields = ["messages", "last_message"]
 
     def get_last_message(self, obj: models.Room):
-        return MessageSerializer(obj.messages.order_by("create_at").last()).data
+        last_message = obj.messages.order_by("create_at").last()
+        return MessageSerializer(last_message).data if last_message else None

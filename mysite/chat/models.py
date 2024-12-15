@@ -50,17 +50,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f'{self.id}  .!.  {self.username} \n {self.email}'
 
-    @property
-    def token(self):
-        return self._generate_jwt_token()
-
-    def get_full_name(self):
-        return self.username
-
-    def get_short_name(self):
-        return self.username
-
     def _generate_jwt_token(self):
+        """
+        Генерирует веб-токен JSON, в котором хранится идентификатор этого
+        пользователя, срок действия токена составляет 1 день от создания
+        """
         dt = datetime.now() + timedelta(days=1)
 
         token = jwt.encode({
@@ -69,6 +63,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
+
+    @property
+    def token(self):
+        return self._generate_jwt_token()
+
+
 class Room(models.Model):
     name = models.CharField(max_length=255)
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="rooms")
