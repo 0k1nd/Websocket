@@ -32,28 +32,18 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             raise ValueError(f"Комната с ID {pk} не найдена")
 
     async def remove_user_from_room(self, pk):
-        """
-        Удаляет пользователя из комнаты.
-        """
         try:
             user = self.scope["user"]
-            # Получаем комнату асинхронно
             room = await models.Room.objects.aget(pk=pk)
-
-            # Проверяем, состоит ли пользователь в комнате, асинхронно
             is_in_room = await sync_to_async(user.current_rooms.filter(pk=room.pk).exists)()
 
             if is_in_room:
-                # Удаляем пользователя из комнаты, асинхронно
                 await sync_to_async(user.current_rooms.remove)(room)
         except models.Room.DoesNotExist:
             raise ValueError(f"Комната с ID {pk} не найдена")
 
     @database_sync_to_async
-    def get_room(self, pk):
-        """
-        Получение комнаты по pk.
-        """
+    def get_room(self, pk):  #получения праймари ключа
         try:
             room = models.Room.objects.get(pk=pk)
             logger.info(f"Комната найдена: {room}")
@@ -62,17 +52,14 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             raise ValueError(f"Комната с ID {pk} не найдена")
 
     @database_sync_to_async
-    def current_users(self, room):
-        """
-        Возвращает текущих пользователей в комнате.
-        """
+    def current_users(self, room):  #все пользователи в комнате
         return [
             serializers.UserSerializer(user).data
             for user in room.current_users.all()
         ]
 
     async def create_object_async(self, room, user, text):
-        obj = await models.Message.objects.acreate(
+        obj = await models.Message.objects.acreate(    #ассинхронное создание объекта
             room=room,
             user=user,
             text=text,
@@ -81,12 +68,9 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         return obj
 
     async def serialize_message(self, message_instance):
-        return await sync_to_async(lambda: serializers.MessageSerializer(message_instance).data)()
+        return await sync_to_async(lambda: serializers.MessageSerializer(message_instance).data)() #ассинхронная сериализация
 
     async def disconnect(self, code):
-        """
-        Действия при отключении.
-        """
         if hasattr(self, "room_subscribe"):
             await self.channel_layer.group_discard(
                 f"room_{self.room_subscribe}",
@@ -98,9 +82,6 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
 
     @action()
     async def join_room(self, pk, **kwargs):
-        """
-        Присоединяет пользователя к комнате и подписывает на группу.
-        """
         try:
             self.room_subscribe = pk
             await self.add_user_to_room(pk)
@@ -114,9 +95,6 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             await self.send_json({"error": str(e)})
 
     async def update_users(self, event):
-        """
-        Обработчик события группы для обновления списка пользователей.
-        """
         logger.info("Обновление пользователей: %s", event)
         usuarios = event.get("usuarios", [])
         await self.send_json({
@@ -125,9 +103,6 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         })
 
     async def notify_users(self):
-        """
-        Уведомляет пользователей в комнате об изменении состава.
-        """
         if hasattr(self, "room_subscribe"):
             room = await self.get_room(self.room_subscribe)
             usuarios = await self.current_users(room)
@@ -135,26 +110,22 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             await self.channel_layer.group_send(
                 f"room_{self.room_subscribe}",
                 {
-                    "type": "update_users",  # Этот тип соответствует названию метода-обработчика
+                    "type": "update_users",  
                     "usuarios": await self.current_users(room)
                 }
             )
 
     @action()
     async def leave_room(self, pk, **kwargs):
-        """
-        Удаляет пользователя из комнаты.
-        """
         try:
             await self.remove_user_from_room(pk)
             await self.notify_users()
         except ValueError as e:
             await self.send_json({"error": str(e)})
 
+
     async def chat_message(self, event):
-        """
-        Обработчик событий группы для отправки сообщений клиенту.
-        """
+
         logger.info("chat_message вызван: %s", event["data"])
         data = event["data"]
         await self.send_json({
@@ -170,21 +141,17 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             if not hasattr(self, "room_subscribe"):
                 raise ValueError("Пользователь не присоединился к комнате.")
 
-            # Асинхронное получение комнаты
             room = await self.get_room(pk=self.room_subscribe)
             logger.info("Комната найдена: %s", room)
 
-            # Асинхронное создание сообщения
             new_message = await self.create_object_async(
                 room=room,
                 user=self.scope['user'],
                 text=message
             )
 
-            # Сериализация сообщения
             serialized_data = await self.serialize_message(new_message)
 
-            # Отправка сообщения в группу
             await self.channel_layer.group_send(
                 f"room_{self.room_subscribe}",
                 {
@@ -201,16 +168,10 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
 
     @action()
     async def subscribe_to_messages_in_room(self, pk, **kwargs):
-        """
-        Подписка на сообщения комнаты.
-        """
         await self.message_activity.subscribe(room=pk)
 
     @model_observer(models.Message)
     async def message_activity(self, instance: models.Message, action, **kwargs):
-        """
-        Наблюдатель за сообщениями.
-        """
         serialized_data = await self.serialize_message(instance)
         await self.send_json(
             {
