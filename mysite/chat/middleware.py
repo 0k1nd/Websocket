@@ -29,13 +29,13 @@ class JwtAuthMiddleware(BaseMiddleware):
         return await super().__call__(scope, receive, send)
 
     def _get_token_from_query(self, query_string):
-        """
-        Извлекает токен из строки запроса.
-        """
         try:
+            if not query_string:
+                return None
             query_params = dict(x.split("=") for x in query_string.split("&"))
             return query_params.get("token")
-        except Exception:
+        except Exception as e:
+            print(f"Ошибка извлечения токена: {e}")
             return None
 
     @database_sync_to_async

@@ -212,6 +212,15 @@
         "documentation": {}
     },
     {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
         "label": "AnonymousUser",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
@@ -477,6 +486,14 @@
         "documentation": {}
     },
     {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -506,6 +523,14 @@
         "description": "rest_framework.views",
         "isExtraImport": true,
         "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "LoginView",
+        "importPath": "django.contrib.auth.views",
+        "description": "django.contrib.auth.views",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.views",
         "documentation": {}
     },
     {
@@ -582,7 +607,7 @@
         "documentation": {}
     },
     {
-        "label": "urls",
+        "label": "views",
         "importPath": "chat",
         "description": "chat",
         "isExtraImport": true,
@@ -595,6 +620,22 @@
         "description": "pathlib",
         "isExtraImport": true,
         "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
         "documentation": {}
     },
     {
@@ -782,6 +823,15 @@
         "documentation": {}
     },
     {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "mysite.chat.consumers",
+        "description": "mysite.chat.consumers",
+        "peekOfCode": "logger = logging.getLogger('chat')\nclass RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):\n    queryset = models.Room.objects.all()\n    serializer_class = serializers.RoomSerializers\n    lookup_field = \"pk\"\n    @database_sync_to_async\n    def add_user_to_room(self, pk):\n        \"\"\"\n        Добавляет пользователя в комнату.\n        \"\"\"",
+        "detail": "mysite.chat.consumers",
+        "documentation": {}
+    },
+    {
         "label": "JwtAuthMiddleware",
         "kind": 6,
         "importPath": "mysite.chat.middleware",
@@ -917,6 +967,15 @@
         "documentation": {}
     },
     {
+        "label": "CustomLoginView",
+        "kind": 6,
+        "importPath": "mysite.chat.views",
+        "description": "mysite.chat.views",
+        "peekOfCode": "class CustomLoginView(LoginView):\n    template_name = 'registration/login.html'  # Путь к вашему шаблону\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.user.is_authenticated:\n            # Генерация токенов для текущего пользователя\n            refresh = RefreshToken.for_user(self.request.user)\n            context['access_token'] = str(refresh.access_token)\n            context['refresh_token'] = str(refresh)\n        return context",
+        "detail": "mysite.chat.views",
+        "documentation": {}
+    },
+    {
         "label": "test",
         "kind": 2,
         "importPath": "mysite.chat.views",
@@ -957,7 +1016,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -966,7 +1025,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -975,7 +1034,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -984,7 +1043,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\nLOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "ALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {\n            'format': '{levelname} {asctime} {module} {message}',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -993,7 +1052,16 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "LOGGING_CONFIG = None\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
+        "peekOfCode": "LOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {\n            'format': '{levelname} {asctime} {module} {message}',\n            'style': '{',\n        },\n        'simple': {",
+        "detail": "mysite.mysite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGING",
+        "kind": 5,
+        "importPath": "mysite.mysite.settings",
+        "description": "mysite.mysite.settings",
+        "peekOfCode": "LOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {\n            'format': '{levelname} {asctime} {module} {message}',\n            'style': '{',\n        },\n        'simple': {\n            'format': '{levelname} {message}',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1182,7 +1250,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.urls",
         "description": "mysite.mysite.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('chat.urls')),\n    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n    path('accounts/', include('django.contrib.auth.urls')),\n    path('login/', auth_views.LoginView.as_view(), name='login'),\n]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('chat.urls')),\n    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n    path('accounts/', include('django.contrib.auth.urls')),\n    path('login/', views.CustomLoginView.as_view(), name='login'),\n    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),\n    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "mysite.mysite.urls",
         "documentation": {}
     },

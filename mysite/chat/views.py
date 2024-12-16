@@ -6,11 +6,10 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.contrib.auth.views import LoginView
+from django.http import JsonResponse
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.hashers import make_password
-
-
-
 from . import models
 def test(request):
     return render(request, "chat/test.html")
@@ -53,3 +52,16 @@ class RegisterView(APIView):
             "refresh": str(refresh),
             "access": str(refresh.access_token)
         }, status=status.HTTP_201_CREATED)
+
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'  # Путь к вашему шаблону
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            # Генерация токенов для текущего пользователя
+            refresh = RefreshToken.for_user(self.request.user)
+            context['access_token'] = str(refresh.access_token)
+            context['refresh_token'] = str(refresh)
+        return context

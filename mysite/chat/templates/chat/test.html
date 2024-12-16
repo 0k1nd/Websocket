@@ -15,7 +15,7 @@
 <pre id="response"></pre>
 
 <script>
-    const ws = new WebSocket(`ws://localhost:8000/ws/?token=$[localStorage.getItem('Token')}`);
+    const ws = new WebSocket(`ws://192.168.0.232:8000/ws/?token=$[localStorage.getItem('refresh_token')}`);
 
     ws.onmessage = function(e) {
         document.getElementById('response').textContent = JSON.stringify(JSON.parse(e.data), undefined, 2);

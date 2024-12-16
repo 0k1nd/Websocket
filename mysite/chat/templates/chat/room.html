@@ -14,7 +14,7 @@
         const room_pk = "{{ room.pk }}";
         const request_id = new Date().getTime();
         const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('access_token');
 
         // Проверка наличия токена
         if (!token) {
@@ -41,30 +41,40 @@
             };
 
             chatSocket.onmessage = function (e) {
-                const data = JSON.parse(e.data);
+            console.log("Получено сообщение:", e.data);
+            const data = JSON.parse(e.data);
 
-                switch (data.action) {
-                    case "retrieve":
-                        document.getElementById('username').innerText = data.data.host.username;
-                        for (let mess of data.data.messages) {
-                            appendMessage(mess.user.username, mess.text);
-                        }
-                        break;
-                    case "create":
-                        appendMessage(data.data.user.username, data.data.text);
-                        break;
-                    case "error":
-                        alert(`Ошибка: ${data.message}`);
-                        break;
-                    default:
-                        console.log("Получено сообщение:", data);
+            switch (data.action) {
+                case "retrieve":
+                    console.log("Данные комнаты:", data.data);
+                    document.getElementById('username').innerText = data.data.host.username;
+                    for (let mess of data.data.messages) {
+                        appendMessage(mess.user.username, mess.text);
+                    }
+                    break;
+                case "create":
+                    console.log("Новое сообщение:", data.data);
+                    appendMessage(data.data.user.username, data.data.text);
+                    break;
+                case "error":
+                    console.error("Ошибка:", data.message);
+                    alert(`Ошибка: ${data.message}`);
+                    break;
+                default:
+                    console.log("Неизвестное действие:", data);
                 }
             };
 
+
             chatSocket.onclose = function(e) {
-                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
-               setInterval(connectWebSocket, 10000);
-              };
+                console.log(`Socket закрыт. Причина: ${e.reason || 'не указана'}.`);
+                if (reconnectAttempts < maxReconnectAttempts) {
+                    reconnectAttempts++;
+                    setTimeout(connectWebSocket, 1000 * Math.pow(2, reconnectAttempts)); // Экспоненциальный интервал
+                } else {
+                    console.error('Превышено максимальное количество попыток переподключения.');
+                }
+            };
 
             chatSocket.onerror = function (error) {
                 console.error('Ошибка WebSocket:', error);

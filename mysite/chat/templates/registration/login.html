@@ -11,33 +11,19 @@
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
-<script>
-    // Функция для получения CSRF-токена из куки
-    function getCSRFToken() {
-        let csrfToken = null;
-        const cookies = document.cookie.split(';'); // Разделяем куки по ";"
 
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.startsWith('csrftoken=')) { // Поиск CSRF-токена
-                csrfToken = cookie.substring('csrftoken='.length, cookie.length);
-                break;
+    <script>
+        // Сохраняем токены в localStorage после успешного логина
+        document.addEventListener('DOMContentLoaded', function () {
+            const accessToken = "{{ access_token|default:'' }}";
+            const refreshToken = "{{ refresh_token|default:'' }}";
+
+            if (accessToken && refreshToken) {
+                localStorage.setItem('access_token', accessToken);
+                localStorage.setItem('refresh_token', refreshToken);
+                console.log("JWT токены сохранены в localStorage.");
             }
-        }
-
-        return csrfToken;
-    }
-
-    // Сохранение CSRF-токена в LocalStorage
-    document.addEventListener('DOMContentLoaded', () => {
-        const csrfToken = getCSRFToken();
-        if (csrfToken) {
-            localStorage.setItem('csrftoken', csrfToken);
-            console.log("CSRF-токен успешно сохранён в LocalStorage:", csrfToken);
-        } else {
-            console.error("CSRF-токен не найден!");
-        }
-    });
-</script>
+        });
+    </script>
 </body>
 </html>

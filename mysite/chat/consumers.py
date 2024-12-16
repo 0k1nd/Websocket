@@ -7,6 +7,10 @@ from asgiref.sync import sync_to_async
 from . import models
 from . import serializers
 
+import logging
+
+logger = logging.getLogger('chat')
+
 
 class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
     queryset = models.Room.objects.all()
@@ -27,25 +31,35 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         except models.Room.DoesNotExist:
             raise ValueError(f"Комната с ID {pk} не найдена")
 
-    @database_sync_to_async
-    def remove_user_from_room(self, pk):
+    async def remove_user_from_room(self, pk):
         """
         Удаляет пользователя из комнаты.
         """
         try:
             user = self.scope["user"]
-            room = models.Room.objects.get(pk=pk)
-            if user.current_rooms.filter(pk=room.pk).exists():
-                user.current_rooms.remove(room)
+            # Получаем комнату асинхронно
+            room = await models.Room.objects.aget(pk=pk)
+
+            # Проверяем, состоит ли пользователь в комнате, асинхронно
+            is_in_room = await sync_to_async(user.current_rooms.filter(pk=room.pk).exists)()
+
+            if is_in_room:
+                # Удаляем пользователя из комнаты, асинхронно
+                await sync_to_async(user.current_rooms.remove)(room)
         except models.Room.DoesNotExist:
             raise ValueError(f"Комната с ID {pk} не найдена")
 
     @database_sync_to_async
     def get_room(self, pk):
         """
-        Возвращает объект комнаты.
+        Получение комнаты по pk.
         """
-        return models.Room.objects.get(pk=pk)
+        try:
+            room = models.Room.objects.get(pk=pk)
+            print(f'комната найдена{room}')
+            return room
+        except models.Room.DoesNotExist:
+            raise ValueError(f"Комната с ID {pk} не найдена")
 
     @database_sync_to_async
     def current_users(self, room):
@@ -56,6 +70,15 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             serializers.UserSerializer(user).data
             for user in room.current_users.all()
         ]
+
+    async def create_object_async(self, room, user, text):
+        obj = await models.Message.objects.acreate(
+                room=room,
+                user=user,
+                text=text,
+            )
+        print(f"Created object: {obj}")
+        return obj
 
     async def notify_users(self):
         """
@@ -70,6 +93,9 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
                     "usuarios": await self.current_users(room)
                 }
             )
+
+    async def serialize_message(self, message_instance):
+        return await sync_to_async(lambda: serializers.MessageSerializer(message_instance).data)()
 
     async def disconnect(self, code):
         """
@@ -105,17 +131,28 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
 
     @action()
     async def create_message(self, message, **kwargs):
-        """
-        Создаёт сообщение в комнате.
-        """
         try:
-            room: models.Room = await self.get_room(pk=self.room_subscribe)
-            new_message = await database_sync_to_async(models.Message.objects.create)(
+            print("----------------------------")
+            logger.debug("Начало create_message: %s", message)
+            logger.debug("room_subscribe: %s", self.room_subscribe)
+
+            # Асинхронное получение комнаты
+            room = await self.get_room(pk=self.room_subscribe)
+            logger.info("Комната найдена: %s", room)
+
+            # Асинхронное создание сообщения
+            new_message = await self.create_object_async(
                 room=room,
                 user=self.scope['user'],
                 text=message
             )
-            serialized_data = serializers.MessageSerializer(new_message).data
+            logger.info("Сообщение создано: %s", new_message)
+
+            # Сериализация сообщения
+            serialized_data = await self.serialize_message(new_message)
+            logger.debug("Сообщение сериализовано: %s", serialized_data)
+
+            # Отправка сообщения в группу
             await self.channel_layer.group_send(
                 f"room_{self.room_subscribe}",
                 {
@@ -123,8 +160,10 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
                     "data": serialized_data
                 }
             )
-        except models.Room.DoesNotExist:
-            await self.send_json({"error": "Комната не найдена"})
+            logger.info("Сообщение отправлено: %s", serialized_data)
+        except Exception as e:
+            logger.error("Ошибка в create_message: %s", e, exc_info=True)
+            await self.send_json({"error": f"Ошибка при создании сообщения: {str(e)}"})
 
     @action()
     async def subscribe_to_messages_in_room(self, pk, **kwargs):
@@ -138,7 +177,7 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         """
         Наблюдатель за сообщениями.
         """
-        serialized_data = serializers.MessageSerializer(instance).data
+        serialized_data = await self.serialize_message(instance)
         await self.send_json(
             {
                 "data": serialized_data,
