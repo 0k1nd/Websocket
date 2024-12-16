@@ -41,29 +41,27 @@
             };
 
             chatSocket.onmessage = function (e) {
-            console.log("Получено сообщение:", e.data);
-            const data = JSON.parse(e.data);
+                console.log("Получено сообщение:", e.data);
+                const data = JSON.parse(e.data);
 
-            switch (data.action) {
-                case "retrieve":
-                    console.log("Данные комнаты:", data.data);
-                    document.getElementById('username').innerText = data.data.host.username;
-                    for (let mess of data.data.messages) {
-                        appendMessage(mess.user.username, mess.text);
-                    }
-                    break;
-                case "create":
-                    console.log("Новое сообщение:", data.data);
-                    appendMessage(data.data.user.username, data.data.text);
-                    break;
-                case "error":
-                    console.error("Ошибка:", data.message);
-                    alert(`Ошибка: ${data.message}`);
-                    break;
-                default:
-                    console.log("Неизвестное действие:", data);
+                switch (data.action) {
+                    case "update_users":
+                        console.log("Обновление списка пользователей:", data.usuarios);
+                        // Обновите интерфейс пользователя с новым списком
+                        break;
+                    case "create":
+                        console.log("Новое сообщение:", data.data);
+                        appendMessage(data.data.user.username, data.data.text);
+                        break;
+                    case "error":
+                        console.error("Ошибка:", data.message);
+                        alert(`Ошибка: ${data.message}`);
+                        break;
+                    default:
+                        console.log("Неизвестное действие:", data);
                 }
             };
+
 
 
             chatSocket.onclose = function(e) {

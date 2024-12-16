@@ -1016,7 +1016,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1025,7 +1025,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1034,7 +1034,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1043,7 +1043,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {\n            'format': '{levelname} {asctime} {module} {message}',",
+        "peekOfCode": "ALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },

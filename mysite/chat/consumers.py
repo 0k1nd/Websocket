@@ -56,7 +56,7 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         """
         try:
             room = models.Room.objects.get(pk=pk)
-            print(f'комната найдена{room}')
+            logger.info(f"Комната найдена: {room}")
             return room
         except models.Room.DoesNotExist:
             raise ValueError(f"Комната с ID {pk} не найдена")
@@ -73,26 +73,12 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
 
     async def create_object_async(self, room, user, text):
         obj = await models.Message.objects.acreate(
-                room=room,
-                user=user,
-                text=text,
-            )
-        print(f"Created object: {obj}")
+            room=room,
+            user=user,
+            text=text,
+        )
+        logger.info(f"Сообщение создано: {obj}")
         return obj
-
-    async def notify_users(self):
-        """
-        Уведомляет пользователей в комнате об изменении состава.
-        """
-        if hasattr(self, "room_subscribe"):
-            room: models.Room = await self.get_room(self.room_subscribe)
-            await self.channel_layer.group_send(
-                f"room_{self.room_subscribe}",
-                {
-                    "type": "update_users",
-                    "usuarios": await self.current_users(room)
-                }
-            )
 
     async def serialize_message(self, message_instance):
         return await sync_to_async(lambda: serializers.MessageSerializer(message_instance).data)()
@@ -102,6 +88,10 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         Действия при отключении.
         """
         if hasattr(self, "room_subscribe"):
+            await self.channel_layer.group_discard(
+                f"room_{self.room_subscribe}",
+                self.channel_name
+            )
             await self.remove_user_from_room(self.room_subscribe)
             await self.notify_users()
         await super().disconnect(code)
@@ -109,14 +99,46 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
     @action()
     async def join_room(self, pk, **kwargs):
         """
-        Присоединяет пользователя к комнате.
+        Присоединяет пользователя к комнате и подписывает на группу.
         """
         try:
             self.room_subscribe = pk
             await self.add_user_to_room(pk)
+            await self.channel_layer.group_add(  # Подписка на группу
+                f"room_{pk}",
+                self.channel_name
+            )
             await self.notify_users()
+            await self.send_json({"success": f"Вы присоединились к комнате {pk}"})
         except ValueError as e:
             await self.send_json({"error": str(e)})
+
+    async def update_users(self, event):
+        """
+        Обработчик события группы для обновления списка пользователей.
+        """
+        logger.info("Обновление пользователей: %s", event)
+        usuarios = event.get("usuarios", [])
+        await self.send_json({
+            "action": "update_users",
+            "usuarios": usuarios
+        })
+
+    async def notify_users(self):
+        """
+        Уведомляет пользователей в комнате об изменении состава.
+        """
+        if hasattr(self, "room_subscribe"):
+            room = await self.get_room(self.room_subscribe)
+            usuarios = await self.current_users(room)
+            logger.info("Уведомление пользователей: %s", usuarios)
+            await self.channel_layer.group_send(
+                f"room_{self.room_subscribe}",
+                {
+                    "type": "update_users",  # Этот тип соответствует названию метода-обработчика
+                    "usuarios": await self.current_users(room)
+                }
+            )
 
     @action()
     async def leave_room(self, pk, **kwargs):
@@ -129,12 +151,24 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
         except ValueError as e:
             await self.send_json({"error": str(e)})
 
+    async def chat_message(self, event):
+        """
+        Обработчик событий группы для отправки сообщений клиенту.
+        """
+        logger.info("chat_message вызван: %s", event["data"])
+        data = event["data"]
+        await self.send_json({
+            "action": "create",
+            "data": data
+        })
+
     @action()
     async def create_message(self, message, **kwargs):
         try:
-            print("----------------------------")
             logger.debug("Начало create_message: %s", message)
-            logger.debug("room_subscribe: %s", self.room_subscribe)
+
+            if not hasattr(self, "room_subscribe"):
+                raise ValueError("Пользователь не присоединился к комнате.")
 
             # Асинхронное получение комнаты
             room = await self.get_room(pk=self.room_subscribe)
@@ -146,11 +180,9 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
                 user=self.scope['user'],
                 text=message
             )
-            logger.info("Сообщение создано: %s", new_message)
 
             # Сериализация сообщения
             serialized_data = await self.serialize_message(new_message)
-            logger.debug("Сообщение сериализовано: %s", serialized_data)
 
             # Отправка сообщения в группу
             await self.channel_layer.group_send(
@@ -160,7 +192,9 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
                     "data": serialized_data
                 }
             )
-            logger.info("Сообщение отправлено: %s", serialized_data)
+        except ValueError as e:
+            logger.error("Ошибка: %s", e, exc_info=True)
+            await self.send_json({"error": f"Ошибка при создании сообщения: {str(e)}"})
         except Exception as e:
             logger.error("Ошибка в create_message: %s", e, exc_info=True)
             await self.send_json({"error": f"Ошибка при создании сообщения: {str(e)}"})
@@ -194,6 +228,7 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
     def message_activity(self, room=None, **kwargs):
         if room is not None:
             yield f"room_{room}"
+
 
 
 class UserConsumer(

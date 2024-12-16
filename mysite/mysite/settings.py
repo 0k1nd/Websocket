@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    '192.168.0.232',]
+    # '192.168.0.232',
+    ]
 LOGGING_CONFIG = None
 LOGGING = {
     'version': 1,
