@@ -26,7 +26,7 @@
         }
 
         let reconnectAttempts = 0;
-        const maxReconnectAttempts = 5;
+        const maxReconnectAttempts = 10;
 
         // Функция подключения WebSocket с автоматическим переподключением
         function connectWebSocket() {
@@ -61,16 +61,10 @@
                 }
             };
 
-            chatSocket.onclose = function () {
-                console.error('Соединение потеряно.');
-                if (reconnectAttempts < maxReconnectAttempts) {
-                    reconnectAttempts++;
-                    console.log(`Попытка переподключения ${reconnectAttempts} из ${maxReconnectAttempts}...`);
-                    setTimeout(connectWebSocket, 3000);
-                } else {
-                    alert('Не удалось восстановить соединение с сервером. Пожалуйста, перезагрузите страницу.');
-                }
-            };
+            chatSocket.onclose = function(e) {
+                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+               setInterval(connectWebSocket, 10000);
+              };
 
             chatSocket.onerror = function (error) {
                 console.error('Ошибка WebSocket:', error);

@@ -732,7 +732,7 @@
         "kind": 6,
         "importPath": "mysite.chat.admin",
         "description": "mysite.chat.admin",
-        "peekOfCode": "class UserAdmin(ModelAdmin):\n    pass\n@admin.register(models.Message)\nclass MessageAdmin(ModelAdmin):\n    pass\n@admin.register(models.Room)\nclass RoomAdmin(ModelAdmin):\n    pass",
+        "peekOfCode": "class UserAdmin(ModelAdmin):\n    list_filter = [\"is_staff\", \"is_active\"]\n@admin.register(models.Message)\nclass MessageAdmin(ModelAdmin):\n    pass\n@admin.register(models.Room)\nclass RoomAdmin(ModelAdmin):\n    pass",
         "detail": "mysite.chat.admin",
         "documentation": {}
     },

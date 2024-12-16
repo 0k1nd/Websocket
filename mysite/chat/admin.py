@@ -4,7 +4,7 @@ from . import models
 
 @admin.register(models.User)
 class UserAdmin(ModelAdmin):
-    pass
+    list_filter = ["is_staff", "is_active"]
 
 @admin.register(models.Message)
 class MessageAdmin(ModelAdmin):
