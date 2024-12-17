@@ -221,6 +221,30 @@
         "documentation": {}
     },
     {
+        "label": "UserCreationForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "AnonymousUser",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
@@ -261,6 +285,23 @@
         "documentation": {}
     },
     {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
         "label": "BaseMiddleware",
         "importPath": "channels.middleware",
         "description": "channels.middleware",
@@ -290,6 +331,22 @@
         "description": "rest_framework.exceptions",
         "isExtraImport": true,
         "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "UntypedToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
         "documentation": {}
     },
     {
@@ -298,14 +355,6 @@
         "isExtraImport": true,
         "importPath": "jwt",
         "description": "jwt",
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "decode",
-        "importPath": "jwt",
-        "description": "jwt",
-        "isExtraImport": true,
         "detail": "jwt",
         "documentation": {}
     },
@@ -359,6 +408,22 @@
     },
     {
         "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
         "isExtraImport": true,
@@ -414,6 +479,14 @@
         "documentation": {}
     },
     {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -446,6 +519,22 @@
         "documentation": {}
     },
     {
+        "label": "routers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "viewsets",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "status",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -462,11 +551,59 @@
         "documentation": {}
     },
     {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
         "label": "HTTPResponse",
         "importPath": "http.client",
         "description": "http.client",
         "isExtraImport": true,
         "detail": "http.client",
+        "documentation": {}
+    },
+    {
+        "label": "action",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
         "documentation": {}
     },
     {
@@ -510,6 +647,46 @@
         "documentation": {}
     },
     {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "DjangoFilterBackend",
+        "importPath": "django_filters.rest_framework",
+        "description": "django_filters.rest_framework",
+        "isExtraImport": true,
+        "detail": "django_filters.rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "SearchFilter",
+        "importPath": "rest_framework.filters",
+        "description": "rest_framework.filters",
+        "isExtraImport": true,
+        "detail": "rest_framework.filters",
+        "documentation": {}
+    },
+    {
+        "label": "OrderingFilter",
+        "importPath": "rest_framework.filters",
+        "description": "rest_framework.filters",
+        "isExtraImport": true,
+        "detail": "rest_framework.filters",
+        "documentation": {}
+    },
+    {
         "label": "Response",
         "importPath": "rest_framework.response",
         "description": "rest_framework.response",
@@ -534,11 +711,35 @@
         "documentation": {}
     },
     {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
+        "label": "IsAuthenticated",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
         "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "IsAdminUser",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
         "documentation": {}
     },
     {
@@ -550,12 +751,11 @@
         "documentation": {}
     },
     {
-        "label": "django",
-        "kind": 6,
+        "label": "wraps",
+        "importPath": "functools",
+        "description": "functools",
         "isExtraImport": true,
-        "importPath": "django",
-        "description": "django",
-        "detail": "django",
+        "detail": "functools",
         "documentation": {}
     },
     {
@@ -615,27 +815,19 @@
         "documentation": {}
     },
     {
+        "label": "urls",
+        "importPath": "chat",
+        "description": "chat",
+        "isExtraImport": true,
+        "detail": "chat",
+        "documentation": {}
+    },
+    {
         "label": "Path",
         "importPath": "pathlib",
         "description": "pathlib",
         "isExtraImport": true,
         "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "TokenObtainPairView",
-        "importPath": "rest_framework_simplejwt.views",
-        "description": "rest_framework_simplejwt.views",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.views",
-        "documentation": {}
-    },
-    {
-        "label": "TokenRefreshView",
-        "importPath": "rest_framework_simplejwt.views",
-        "description": "rest_framework_simplejwt.views",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.views",
         "documentation": {}
     },
     {
@@ -660,14 +852,6 @@
         "description": "django.conf.urls.static",
         "isExtraImport": true,
         "detail": "django.conf.urls.static",
-        "documentation": {}
-    },
-    {
-        "label": "AllowAny",
-        "importPath": "rest_framework.permissions",
-        "description": "rest_framework.permissions",
-        "isExtraImport": true,
-        "detail": "rest_framework.permissions",
         "documentation": {}
     },
     {
@@ -832,11 +1016,29 @@
         "documentation": {}
     },
     {
+        "label": "SignUpForm",
+        "kind": 6,
+        "importPath": "mysite.chat.forms",
+        "description": "mysite.chat.forms",
+        "peekOfCode": "class SignUpForm(UserCreationForm):\n    email = forms.EmailField(max_length=254, help_text='Обязательное поле. Введите действующий email.')\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password1', 'password2')\nclass LoginForm(AuthenticationForm):\n    email = forms.CharField(label='Email пользователя')\n    password = forms.CharField(label='Пароль', widget=forms.PasswordInput)",
+        "detail": "mysite.chat.forms",
+        "documentation": {}
+    },
+    {
+        "label": "LoginForm",
+        "kind": 6,
+        "importPath": "mysite.chat.forms",
+        "description": "mysite.chat.forms",
+        "peekOfCode": "class LoginForm(AuthenticationForm):\n    email = forms.CharField(label='Email пользователя')\n    password = forms.CharField(label='Пароль', widget=forms.PasswordInput)",
+        "detail": "mysite.chat.forms",
+        "documentation": {}
+    },
+    {
         "label": "JwtAuthMiddleware",
         "kind": 6,
         "importPath": "mysite.chat.middleware",
         "description": "mysite.chat.middleware",
-        "peekOfCode": "class JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT-токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        \"\"\"\n        Главная точка входа в middleware.\n        \"\"\"\n        query_string = scope.get(\"query_string\", b\"\").decode()\n        token = self._get_token_from_query(query_string)",
+        "peekOfCode": "class JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT-токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        \"\"\"\n        Главная точка входа в middleware.\n        \"\"\"\n        # Получение токена из куки\n        token = self._get_token_from_cookie(scope)",
         "detail": "mysite.chat.middleware",
         "documentation": {}
     },
@@ -845,7 +1047,7 @@
         "kind": 5,
         "importPath": "mysite.chat.middleware",
         "description": "mysite.chat.middleware",
-        "peekOfCode": "User = get_user_model()\nclass JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT-токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        \"\"\"\n        Главная точка входа в middleware.\n        \"\"\"\n        query_string = scope.get(\"query_string\", b\"\").decode()",
+        "peekOfCode": "User = get_user_model()\nclass JwtAuthMiddleware(BaseMiddleware):\n    \"\"\"\n    Middleware для обработки JWT-токенов в WebSocket соединениях.\n    \"\"\"\n    async def __call__(self, scope, receive, send):\n        \"\"\"\n        Главная точка входа в middleware.\n        \"\"\"\n        # Получение токена из куки",
         "detail": "mysite.chat.middleware",
         "documentation": {}
     },
@@ -949,12 +1151,30 @@
         "documentation": {}
     },
     {
+        "label": "router",
+        "kind": 5,
+        "importPath": "mysite.chat.urls",
+        "description": "mysite.chat.urls",
+        "peekOfCode": "router = routers.DefaultRouter()\n# router.register('test', views.test, 'test')\nrouter.register('rooms', views.RoomViewSet, 'rooms')\n# router.register('main', views.index, 'main')\nrouter.register('register', views.RegisterView, 'reg')\nurlpatterns = [\n    path('/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),\n    path('/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n    path('login/', views.CustomLoginView.as_view(), name='login'),\n    path('accounts/', include('django.contrib.auth.urls')),",
+        "detail": "mysite.chat.urls",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "mysite.chat.urls",
         "description": "mysite.chat.urls",
-        "peekOfCode": "urlpatterns = [\n    path('test/', views.test),\n    path('room/<int:pk>/', views.room, name='room'),\n    path('index/', views.index, name='index'),\n    path('token/', views.RegisterView.as_view(), name='reg'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),\n    path('/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n    path('login/', views.CustomLoginView.as_view(), name='login'),\n    path('accounts/', include('django.contrib.auth.urls')),\n    # path('test/', views.test),\n    # path('index/', views.index, name='index'),\n    # path('token/', views.RegisterView.as_view(), name='reg'),\n]\nurlpatterns += router.urls",
         "detail": "mysite.chat.urls",
+        "documentation": {}
+    },
+    {
+        "label": "RoomViewSet",
+        "kind": 6,
+        "importPath": "mysite.chat.views",
+        "description": "mysite.chat.views",
+        "peekOfCode": "class RoomViewSet(viewsets.ModelViewSet):\n    permission_classes = [IsAuthenticated | IsAdminUser]\n    queryset = models.Room.objects.all()\n    serializer_class = serializers.RoomSerializers\n    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]\n    filterset_fields = ['name', 'id', 'current_users']\n    search_fields = ['name', 'host', 'current_users']\n    ordering_fields = ['id']\n    @action(detail=False, methods=['POST'], url_path=\"create\")\n    def index(self, request):",
+        "detail": "mysite.chat.views",
         "documentation": {}
     },
     {
@@ -962,7 +1182,7 @@
         "kind": 6,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "class RegisterView(APIView):\n    def post(self, request):\n        # Обработка JSON и форм\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        email = request.data.get(\"email\")\n        # Отладка\n        print(\"Request Content-Type:\", request.content_type)\n        print(\"Request Data:\", request.data)\n        if not username or not password:",
+        "peekOfCode": "class RegisterView(viewsets.ModelViewSet ):\n    queryset = []\n    serializer_class = serializers.UserSerializer\n    @action(detail=False, methods=['POST'], url_path='create')\n    def create_user(self, request):\n        # Обработка JSON и форм\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        email = request.data.get(\"email\")\n        # Отладка",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -971,7 +1191,16 @@
         "kind": 6,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "class CustomLoginView(LoginView):\n    template_name = 'registration/login.html'  # Путь к вашему шаблону\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.user.is_authenticated:\n            # Генерация токенов для текущего пользователя\n            refresh = RefreshToken.for_user(self.request.user)\n            context['access_token'] = str(refresh.access_token)\n            context['refresh_token'] = str(refresh)\n        return context",
+        "peekOfCode": "class CustomLoginView(LoginView):\n    template_name = 'registration/login.html'  # Путь к вашему шаблону\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.user.is_authenticated:\n            refresh = RefreshToken.for_user(self.request.user)\n            context['access_token'] = str(refresh.access_token)\n            context['refresh_token'] = str(refresh)\n        return context\nclass CookieTokenRefreshView(TokenRefreshView):",
+        "detail": "mysite.chat.views",
+        "documentation": {}
+    },
+    {
+        "label": "CookieTokenRefreshView",
+        "kind": 6,
+        "importPath": "mysite.chat.views",
+        "description": "mysite.chat.views",
+        "peekOfCode": "class CookieTokenRefreshView(TokenRefreshView):\n    def post(self, request, *args, **kwargs):\n        refresh_token = request.COOKIES.get('refresh_token')\n        if not refresh_token:\n            return Response({'error': 'Refresh token not found'}, status=status.HTTP_401_UNAUTHORIZED)\n        # Добавляем refresh_token в тело запроса\n        request.data['refresh'] = refresh_token\n        response = super().post(request, *args, **kwargs)\n        # Устанавливаем новые токены в куки\n        if response.status_code == 200:",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -989,16 +1218,16 @@
         "kind": 2,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "def index(request):\n    if request.method == \"POST\":\n        name = request.POST.get(\"name\", None)\n        if name:\n            room = models.Room.objects.create(name=name, host=request.user)\n            return HttpResponseRedirect(reverse(\"room\", kwargs={\"pk\": room.pk}))\n        return render(request, 'chat/index.html', {\"error\": \"Имя комнаты обязательно!\"})\n    return render(request, 'chat/index.html')\ndef room(request, pk):\n    room = get_object_or_404(models.Room, pk=pk)",
+        "peekOfCode": "def index(request):\n    if request.method == \"POST\":\n        name = request.POST.get(\"name\", None)\n        if name:\n            room = models.Room.objects.create(name=name, host=request.user)\n            return HttpResponseRedirect(reverse(\"room\", kwargs={\"pk\": room.pk}))\n        return render(request, 'chat/index.html', {\"error\": \"Имя комнаты обязательно!\"})\n    return render(request, 'chat/index.html')\ndef custom_authentication_action(detail=False, methods=None, url_path=None):\n    def decorator(func):",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
     {
-        "label": "room",
+        "label": "custom_authentication_action",
         "kind": 2,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "def room(request, pk):\n    room = get_object_or_404(models.Room, pk=pk)\n    return render(request, 'chat/room.html', {\"room\": room, \"ws_url\": f\"ws://{request.get_host()}/ws/chat/{room.pk}/\"})\nclass RegisterView(APIView):\n    def post(self, request):\n        # Обработка JSON и форм\n        username = request.data.get(\"username\")\n        password = request.data.get(\"password\")\n        email = request.data.get(\"email\")\n        # Отладка",
+        "peekOfCode": "def custom_authentication_action(detail=False, methods=None, url_path=None):\n    def decorator(func):\n        @action(detail=detail, methods=methods, url_path=url_path, permission_classes=[])\n        @wraps(func)  # Сохраняем имя и метаданные оригинальной функции\n        def wrapped_action(self, request, *args, **kwargs):\n            email = request.data.get('email')\n            password = request.data.get('password')\n            if not email or not password:\n                return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)\n            user = authenticate(email=email, password=password)",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -1016,7 +1245,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1025,7 +1254,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-l%k7q(9p)=!8!qt$cq%@zuq_yc-k)apzj-khfvdld+t+s@0$61'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1034,7 +1263,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1043,7 +1272,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\n    '127.0.0.1',\n    # '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {",
+        "peekOfCode": "ALLOWED_HOSTS = [\n    '127.0.0.1',\n    '192.168.0.232',\n    ]\nLOGGING_CONFIG = None\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'formatters': {\n        'verbose': {",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1079,7 +1308,16 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n}\nSIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),\n    'ROTATE_REFRESH_TOKENS': True,\n}",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'chat.authentication.CookieJWTAuthentication',\n    ),\n    'DEFAULT_PERMISSION_CLASSES': (\n        'rest_framework.permissions.IsAuthenticated',\n    ),\n}\nJWT_ALGORITHM = \"HS256\"\nSIMPLE_JWT = {",
+        "detail": "mysite.mysite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "JWT_ALGORITHM",
+        "kind": 5,
+        "importPath": "mysite.mysite.settings",
+        "description": "mysite.mysite.settings",
+        "peekOfCode": "JWT_ALGORITHM = \"HS256\"\nSIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),\n    'ROTATE_REFRESH_TOKENS': True,\n}\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1088,7 +1326,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "SIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),\n    'ROTATE_REFRESH_TOKENS': True,\n}\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',",
+        "peekOfCode": "SIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),\n    'ROTATE_REFRESH_TOKENS': True,\n}\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1097,7 +1335,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\nROOT_URLCONF = 'mysite.urls'",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
@@ -1250,7 +1488,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.urls",
         "description": "mysite.mysite.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('chat.urls')),\n    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n    path('accounts/', include('django.contrib.auth.urls')),\n    path('login/', views.CustomLoginView.as_view(), name='login'),\n    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),\n    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include(chat_urls)),\n    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "mysite.mysite.urls",
         "documentation": {}
     },
