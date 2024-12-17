@@ -52,25 +52,29 @@ def custom_authentication_action(detail=False, methods=None, url_path=None):
                 login(request, user)
                 refresh = RefreshToken.for_user(user)
                 response = Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
-                response.set_cookie(
-                    key='access_token',
-                    value=str(refresh.access_token),
-                    httponly=True,  # Куки недоступны через JavaScript
-                    secure=False,  # Только для HTTPS
-                    samesite='Lax'  # Защита от CSRF
-                )
-                response.set_cookie(
-                    key='refresh_token',
-                    value=str(refresh),
-                    httponly=True,
-                    secure=False,
-                    samesite='Lax'
-                )
-                return Response({
+                print('sdfdsf', refresh)
+                response = Response({
                     'access_token': str(refresh.access_token),
                     'refresh_token': str(refresh),
                     'user': serializers.UserSerializer(request.user).data,
                 }, status=status.HTTP_200_OK)
+
+                response.set_cookie(
+                    key='access_token',
+                    value=str(refresh.access_token),
+                    httponly=False,
+                    secure=False,
+                    samesite='Lax',
+                )
+                response.set_cookie(
+                    key='refresh_token',
+                    value=str(refresh),
+                    httponly=False,
+                    secure=False,
+                    samesite='Lax',
+                )
+                return response
+
 
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -92,7 +96,7 @@ class RoomViewSet(viewsets.ModelViewSet):
         name = request.POST.get("name", None)
         if name:
             room = models.Room.objects.create(name=name, host=request.user)
-            serializered_data = serializers.RoomSerializers(room)
+            serializered_data = serializers.RoomSerializers(room).data
             return Response({
                 'status': 'success',
                 'message': 'Room created successfully.',
@@ -104,11 +108,14 @@ class RoomViewSet(viewsets.ModelViewSet):
             'message': 'Name is required.',
         }, status=status.HTTP_400_BAD_REQUEST)
 
-
     @action(detail=True, url_path='one')
     def one(self, request, pk):
         room = get_object_or_404(models.Room, pk=pk)
-        return render(request, 'chat/room.html',{"room": room, "ws_url": f"ws://{request.get_host()}/ws/chat/{room.pk}/"})
+        return render(request, 'chat/room.html', {
+            "room": room,
+            "ws_url": f"ws://{request.get_host()}/ws/chat/{room.pk}/"
+        })
+
 
 class RegisterView(viewsets.ModelViewSet ):
     queryset = []
@@ -164,7 +171,6 @@ class CookieTokenRefreshView(TokenRefreshView):
         if not refresh_token:
             return Response({'error': 'Refresh token not found'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # Добавляем refresh_token в тело запроса
         request.data['refresh'] = refresh_token
         response = super().post(request, *args, **kwargs)
 

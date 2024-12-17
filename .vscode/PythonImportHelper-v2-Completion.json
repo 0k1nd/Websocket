@@ -75,6 +75,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -137,6 +145,175 @@
         "description": "django.apps",
         "isExtraImport": true,
         "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "BaseAuthentication",
+        "importPath": "rest_framework.authentication",
+        "description": "rest_framework.authentication",
+        "isExtraImport": true,
+        "detail": "rest_framework.authentication",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationFailed",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationFailed",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationFailed",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "UntypedToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "UntypedToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "importPath": "rest_framework_simplejwt.tokens",
+        "description": "rest_framework_simplejwt.tokens",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.tokens",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "ExpiredSignatureError",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidTokenError",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "ExpiredSignatureError",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidTokenError",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "decode",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "ExpiredSignatureError",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidTokenError",
+        "importPath": "jwt",
+        "description": "jwt",
+        "isExtraImport": true,
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
         "documentation": {}
     },
     {
@@ -315,127 +492,6 @@
         "description": "channels.middleware",
         "isExtraImport": true,
         "detail": "channels.middleware",
-        "documentation": {}
-    },
-    {
-        "label": "AuthenticationFailed",
-        "importPath": "rest_framework.exceptions",
-        "description": "rest_framework.exceptions",
-        "isExtraImport": true,
-        "detail": "rest_framework.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "AuthenticationFailed",
-        "importPath": "rest_framework.exceptions",
-        "description": "rest_framework.exceptions",
-        "isExtraImport": true,
-        "detail": "rest_framework.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "UntypedToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
-        "documentation": {}
-    },
-    {
-        "label": "RefreshToken",
-        "importPath": "rest_framework_simplejwt.tokens",
-        "description": "rest_framework_simplejwt.tokens",
-        "isExtraImport": true,
-        "detail": "rest_framework_simplejwt.tokens",
-        "documentation": {}
-    },
-    {
-        "label": "jwt",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "jwt",
-        "description": "jwt",
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "ExpiredSignatureError",
-        "importPath": "jwt",
-        "description": "jwt",
-        "isExtraImport": true,
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "InvalidTokenError",
-        "importPath": "jwt",
-        "description": "jwt",
-        "isExtraImport": true,
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "decode",
-        "importPath": "jwt",
-        "description": "jwt",
-        "isExtraImport": true,
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "ExpiredSignatureError",
-        "importPath": "jwt",
-        "description": "jwt",
-        "isExtraImport": true,
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "InvalidTokenError",
-        "importPath": "jwt",
-        "description": "jwt",
-        "isExtraImport": true,
-        "detail": "jwt",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "login",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "authenticate",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "views",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
         "documentation": {}
     },
     {
@@ -989,6 +1045,24 @@
         "documentation": {}
     },
     {
+        "label": "CookieJWTAuthentication",
+        "kind": 6,
+        "importPath": "mysite.chat.authentication",
+        "description": "mysite.chat.authentication",
+        "peekOfCode": "class CookieJWTAuthentication(BaseAuthentication):\n    def authenticate(self, request):\n        token = request.COOKIES.get('access_token')\n        if not token:\n            return None\n        try:\n            decoded_data = UntypedToken(token)\n            user_id = decoded_data.payload.get(\"user_id\")\n            if not user_id:\n                raise AuthenticationFailed(\"Пользователь отсутствует в токене\")",
+        "detail": "mysite.chat.authentication",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 5,
+        "importPath": "mysite.chat.authentication",
+        "description": "mysite.chat.authentication",
+        "peekOfCode": "User = get_user_model()\nclass CookieJWTAuthentication(BaseAuthentication):\n    def authenticate(self, request):\n        token = request.COOKIES.get('access_token')\n        if not token:\n            return None\n        try:\n            decoded_data = UntypedToken(token)\n            user_id = decoded_data.payload.get(\"user_id\")\n            if not user_id:",
+        "detail": "mysite.chat.authentication",
+        "documentation": {}
+    },
+    {
         "label": "RoomConsumer",
         "kind": 6,
         "importPath": "mysite.chat.consumers",
@@ -1200,7 +1274,7 @@
         "kind": 6,
         "importPath": "mysite.chat.views",
         "description": "mysite.chat.views",
-        "peekOfCode": "class CookieTokenRefreshView(TokenRefreshView):\n    def post(self, request, *args, **kwargs):\n        refresh_token = request.COOKIES.get('refresh_token')\n        if not refresh_token:\n            return Response({'error': 'Refresh token not found'}, status=status.HTTP_401_UNAUTHORIZED)\n        # Добавляем refresh_token в тело запроса\n        request.data['refresh'] = refresh_token\n        response = super().post(request, *args, **kwargs)\n        # Устанавливаем новые токены в куки\n        if response.status_code == 200:",
+        "peekOfCode": "class CookieTokenRefreshView(TokenRefreshView):\n    def post(self, request, *args, **kwargs):\n        refresh_token = request.COOKIES.get('refresh_token')\n        if not refresh_token:\n            return Response({'error': 'Refresh token not found'}, status=status.HTTP_401_UNAUTHORIZED)\n        request.data['refresh'] = refresh_token\n        response = super().post(request, *args, **kwargs)\n        # Устанавливаем новые токены в куки\n        if response.status_code == 200:\n            access_token = response.data['access']",
         "detail": "mysite.chat.views",
         "documentation": {}
     },
@@ -1308,7 +1382,7 @@
         "kind": 5,
         "importPath": "mysite.mysite.settings",
         "description": "mysite.mysite.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'chat.authentication.CookieJWTAuthentication',\n    ),\n    'DEFAULT_PERMISSION_CLASSES': (\n        'rest_framework.permissions.IsAuthenticated',\n    ),\n}\nJWT_ALGORITHM = \"HS256\"\nSIMPLE_JWT = {",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': [\n        'chat.authentication.CookieJWTAuthentication',\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ],\n}\nJWT_ALGORITHM = \"HS256\"\nSIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),",
         "detail": "mysite.mysite.settings",
         "documentation": {}
     },
