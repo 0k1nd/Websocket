@@ -2,12 +2,112 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Chat Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        #chat-log {
+            width: 90%;
+            max-width: 600px;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            resize: none;
+            background-color: #f3e5f5;
+            color: #2c3e50;
+            overflow-y: auto;
+            box-shadow: none;
+        }
+
+        #chat-message-input {
+            width: 90%;
+            max-width: 600px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            color: #2c3e50;
+            background-color: #f3e5f5;
+            box-shadow: none;
+        }
+
+        button {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: 2px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            background-color: #8e44ad;
+            box-shadow: none;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #732d91;
+        }
+
+        @media (max-width: 768px) {
+            #chat-log {
+                height: 250px;
+            }
+
+            #chat-message-input {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h4 {
+                font-size: 1.2rem;
+            }
+
+            #chat-log {
+                height: 200px;
+            }
+
+            #chat-message-input {
+                font-size: 0.8rem;
+            }
+
+            button {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h4>Привет, <span id="username"></span></h4>
-    <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
-    <input id="chat-message-input" type="text" size="100" placeholder="Введите сообщение"><br>
+    <h4>Привет  <span id="username"></span></h4>
+    <textarea id="chat-log" readonly></textarea><br>
+    <input id="chat-message-input" type="text" placeholder="Введите сообщение"><br>
     <button id="chat-message-submit">Отправить</button>
 
     <script>
@@ -18,7 +118,6 @@
         let reconnectAttempts = 0;
         const maxReconnectAttempts = 10;
 
-        // Функция подключения WebSocket с автоматическим переподключением
         function connectWebSocket() {
             const chatSocket = new WebSocket(`${protocol}://${window.location.host}/ws/chat/`);
 
@@ -65,7 +164,6 @@
                 console.error('Ошибка WebSocket:', error);
             };
 
-            // Обработка отправки сообщений
             document.getElementById('chat-message-submit').onclick = function () {
                 const messageInput = document.getElementById('chat-message-input');
                 const message = messageInput.value.trim();
@@ -79,7 +177,6 @@
                 messageInput.value = '';
             };
 
-            // Отправка по нажатию Enter
             document.getElementById('chat-message-input').onkeyup = function (e) {
                 if (e.key === 'Enter') {
                     document.getElementById('chat-message-submit').click();
@@ -87,14 +184,12 @@
             };
         }
 
-        // Функция для добавления сообщений в лог
         function appendMessage(username, message) {
             const chatLog = document.getElementById('chat-log');
             chatLog.value += `${username}: ${message}\n`;
             chatLog.scrollTop = chatLog.scrollHeight;
         }
 
-        // Запуск подключения WebSocket
         connectWebSocket();
     </script>
 </body>

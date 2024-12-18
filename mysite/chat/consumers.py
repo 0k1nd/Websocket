@@ -19,9 +19,7 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
 
     @database_sync_to_async
     def add_user_to_room(self, pk):
-        """
-        Добавляет пользователя в комнату.
-        """
+
         try:
             user = self.scope["user"]
             room = models.Room.objects.get(pk=pk)
@@ -80,6 +78,39 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
             await self.notify_users()
         await super().disconnect(code)
 
+    async def get_message_history(self, pk):
+        try:
+            # Проверяем наличие комнаты
+            room = await database_sync_to_async(models.Room.objects.get)(pk=pk)
+
+            # Извлекаем сообщения из базы данных
+            messages = await database_sync_to_async(
+                lambda: list(
+                    models.Message.objects.filter(room=room).select_related('room').order_by('create_at')
+                )
+            )()
+
+            logger.info(f"История сообщений для комнаты {pk}: {len(messages)} сообщений найдено.")
+
+            for message in messages:
+                serialized_data = await sync_to_async(
+                    lambda: serializers.MessageSerializer(message).data
+                )()
+
+                await self.channel_layer.group_send(
+                    f"room_{self.room_subscribe}",
+                    {
+                        "type": "chat.message",
+                        "data": serialized_data
+                    }
+                )
+        except models.Room.DoesNotExist:
+            logger.error(f"Комната с ID {pk} не найдена.")
+            await self.send_json({"error": f"Комната с ID {pk} не найдена."})
+        except Exception as e:
+            logger.error(f"Ошибка в get_message_history: {e}", exc_info=True)
+            await self.send_json({"error": f"Произошла ошибка: {str(e)}"})
+
     @action()
     async def join_room(self, pk, **kwargs):
         try:
@@ -90,6 +121,7 @@ class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
                 self.channel_name
             )
             await self.notify_users()
+            await self.get_message_history(pk)
             await self.send_json({"success": f"Вы присоединились к комнате {pk}"})
         except ValueError as e:
             await self.send_json({"error": str(e)})
